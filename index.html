@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <title>Gestão à Vista - Dashboards</title>
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background-color: #000; }
+        /* Garante que o iframe ocupe a tela toda sem bordas */
+        body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background-color: #000; }
         iframe { width: 100%; height: 100%; border: none; }
     </style>
 </head>
@@ -13,24 +14,31 @@
     <iframe id="dashboard-frame" src=""></iframe>
 
     <script>
-        // 1. Liste aqui os links públicos/incorporados dos seus dashboards
+        // 1. Liste aqui APENAS os links (URLs) entre aspas e separados por vírgula
         const dashboards = [
-    <iframe src="https://valedotijuco-my.sharepoint.com/personal/gente_gestao_cmaa_ind_br/_layouts/15/Doc.aspx?sourcedoc={ce3e46ed-f9bb-469e-8885-9f67cf160855}&action=embedview" width="100%" height="450px" frameborder="0" allowfullscreen="true"></iframe>
-];
+            "https://valedotijuco-my.sharepoint.com/personal/gente_gestao_cmaa_ind_br/_layouts/15/Doc.aspx?sourcedoc={ce3e46ed-f9bb-469e-8885-9f67cf160855}&action=embedview",
+            "COLOQUE_OUTRO_LINK_AQUI_SE_TIVER"
+        ];
 
-        // 2. Tempo de transição em milissegundos (ex: 10000 = 10 segundos)
-        const tempoTroca = 10000; 
+        // 2. Tempo de transição (ex: 30000 = 30 segundos)
+        const tempoTroca = 30000; 
         
         let indiceAtual = 0;
         const frame = document.getElementById('dashboard-frame');
 
         function rotacionarDashboard() {
-            frame.src = dashboards[indiceAtual];
-            indiceAtual = (indiceAtual + 1) % dashboards.length;
+            // Verifica se o link existe antes de tentar carregar
+            if (dashboards.length > 0) {
+                frame.src = dashboards[indiceAtual];
+                console.log("Carregando:", dashboards[indiceAtual]);
+                indiceAtual = (indiceAtual + 1) % dashboards.length;
+            }
         }
 
-        // Inicia a primeira exibição e define o intervalo
+        // Inicia a primeira exibição
         rotacionarDashboard();
+
+        // Define o intervalo de troca
         setInterval(rotacionarDashboard, tempoTroca);
     </script>
 </body>
