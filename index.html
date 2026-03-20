@@ -2,43 +2,33 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Gestão à Vista - Dashboards</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão à Vista - Dashboard Fixo</title>
     <style>
-        /* Garante que o iframe ocupe a tela toda sem bordas */
-        body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background-color: #000; }
-        iframe { width: 100%; height: 100%; border: none; }
+        /* Ocupa 100% da tela, sem margens e sem barras de rolagem */
+        body, html { 
+            margin: 0; 
+            padding: 0; 
+            height: 100%; 
+            width: 100%; 
+            overflow: hidden; 
+            background-color: #000; 
+        }
+        /* Faz o iframe preencher todo o espaço disponível */
+        iframe { 
+            width: 100%; 
+            height: 100%; 
+            border: none; 
+            display: block;
+        }
     </style>
 </head>
 <body>
 
-    <iframe id="dashboard-frame" src=""></iframe>
+    <iframe 
+        src="https://valedotijuco-my.sharepoint.com/personal/gente_gestao_cmaa_ind_br/_layouts/15/Doc.aspx?sourcedoc={ce3e46ed-f9bb-469e-8885-9f67cf160855}&action=embedview" 
+        allowfullscreen="true">
+    </iframe>
 
-    <script>
-        // 1. Liste aqui APENAS os links (URLs) entre aspas e separados por vírgula
-        const dashboards = [
-            "https://valedotijuco-my.sharepoint.com/personal/gente_gestao_cmaa_ind_br/_layouts/15/Doc.aspx?sourcedoc={ce3e46ed-f9bb-469e-8885-9f67cf160855}&amp;action=embedview"
-        ];
-
-        // 2. Tempo de transição (ex: 30000000000 = 30 segundos)
-        const tempoTroca = 30000000000; 
-        
-        let indiceAtual = 0;
-        const frame = document.getElementById('dashboard-frame');
-
-        function rotacionarDashboard() {
-            // Verifica se o link existe antes de tentar carregar
-            if (dashboards.length > 0) {
-                frame.src = dashboards[indiceAtual];
-                console.log("Carregando:", dashboards[indiceAtual]);
-                indiceAtual = (indiceAtual + 1) % dashboards.length;
-            }
-        }
-
-        // Inicia a primeira exibição
-        rotacionarDashboard();
-
-        // Define o intervalo de troca
-        setInterval(rotacionarDashboard, tempoTroca);
-    </script>
 </body>
 </html>
